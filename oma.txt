@@ -1,0 +1,70 @@
+*** Settings
+Resource    resource.txt
+
+*** Test Cases ***
+Valid Login
+    Open Browser To Login Page
+	Input Username    demo
+	Input Password    mode
+	Submit Credentials
+	Welcome Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Wrong_Pass_Wrong_user
+    Open Browser To Login Page
+	Input Username    eskon
+	Input Password    viikset
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Wrong_Pass
+    Open Browser To Login Page
+	Input Username    demo
+	Input Password    viikset
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Wrong_User
+    Open Browser To Login Page
+	Input Username    eskon
+	Input Password    mode
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Null_User
+    Open Browser To Login Page
+	Input Password    mode
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Null_Pass
+    Open Browser To Login Page
+	Input Username    demo
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Wrong_User_Null_Pass
+    Open Browser To Login Page
+	Input Username    eskon
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Null_User_Wrong_Pass
+    Open Browser To Login Page
+	Input Password    viikset
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
+Login Null_User_Null_Pass
+    Open Browser To Login Page
+	Submit Credentials
+	Error Page Should Be Open
+	[Teardown]        Close Browser
+	
